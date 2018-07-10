@@ -30,7 +30,6 @@ app.get(
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     let restart = sudo(["systemctl", "restart", "fivem.service"], {});
-    restart.stdout.on("error", e => res.json({ error: e }));
     res.json({ restart: "OK" });
   }
 );
@@ -40,7 +39,6 @@ app.get(
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     let stop = sudo(["systemctl", "stop", "fivem.service"], {});
-    stop.stdout.on("error", e => res.json({ error: e }));
     res.json({ stop: "OK" });
   }
 );
@@ -50,7 +48,6 @@ app.get(
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     let start = sudo(["systemctl", "start", "fivem.service"], {});
-    start.stdout.on("error", e => res.json({ error: e }));
     res.json({ start: "OK" });
   }
 );
@@ -60,7 +57,6 @@ app.get(
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     let status = sudo(["systemctl", "status", "fivem.service"], {});
-    status.stdout.on("error", e => res.json({ error: e }));
     status.stdout.on("data", d => {
       let data = d.toString().split("\n")[2];
       res.json({ status: data });
