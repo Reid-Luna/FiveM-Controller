@@ -112,10 +112,10 @@ export const statusServer = () => dispatch => {
   axios
     .get("/status")
     .then(res => {
-      const status = res.status;
+      const status = res.data.status;
       dispatch({
         type: STATUS,
-        payload: res
+        payload: status
       });
     })
     .catch(err =>
