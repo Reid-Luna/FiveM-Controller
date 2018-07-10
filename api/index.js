@@ -1,3 +1,11 @@
+const mongoose = require("mongoose");
+const db = require("./config/keys").mongoURI;
+console.log(db);
+mongoose
+  .connect(db)
+  .then(() => console.log("Connected to mongoDB"))
+  .catch(err => console.log(err));
+
 const express = require("express");
 const app = express();
 
@@ -8,14 +16,6 @@ const cors = require("cors");
 app.use(cors());
 
 const sudo = require("sudo");
-
-const mongoose = require("mongoose");
-const db = require("./config/keys").mongoURI;
-console.log(db);
-mongoose
-  .connect(db)
-  .then(() => console.log("Connected to mongoDB"))
-  .catch(err => console.log(err));
 
 const passport = require("passport");
 app.use(passport.initialize());
