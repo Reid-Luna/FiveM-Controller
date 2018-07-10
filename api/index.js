@@ -22,7 +22,8 @@ app.use(passport.initialize());
 require("./config/passport")(passport);
 
 const users = require("./routes/user");
-app.use("/api/users", users);
+app.use(app.router);
+users.initialize(app);
 
 app.get(
   "/restart",
