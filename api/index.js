@@ -55,4 +55,14 @@ app.get(
   }
 );
 
-app.listen(9000, () => console.log("app running"));
+app.get(
+  "/status",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    let status = sudo(["systemctl", "status", "fivem.service"], {});
+    status.stdout.on("error", e => res.json({ error: e }));
+    status.stdout.on("data", d => res.json({ status: d }));
+  }
+);
+
+app.listen(80, () => console.log("app running"));
