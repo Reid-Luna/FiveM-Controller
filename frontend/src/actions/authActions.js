@@ -56,7 +56,7 @@ export const logoutUser = () => dispatch => {
 
 export const startServer = () => dispatch => {
   axios
-    .get("/api/users/login", userData)
+    .get("/api/users/login")
     .then(res => {
       const status = res.start;
       dispatch({
@@ -74,7 +74,7 @@ export const startServer = () => dispatch => {
 
 export const stopServer = () => dispatch => {
   axios
-    .get("/api/users/login", userData)
+    .get("/api/users/login")
     .then(res => {
       const status = res.stop;
       dispatch({
@@ -92,7 +92,7 @@ export const stopServer = () => dispatch => {
 
 export const restartServer = () => dispatch => {
   axios
-    .get("/api/users/login", userData)
+    .get("/api/users/login")
     .then(res => {
       const status = res.restart;
       dispatch({
@@ -110,7 +110,7 @@ export const restartServer = () => dispatch => {
 
 export const statusServer = () => dispatch => {
   axios
-    .get("/api/users/login", userData)
+    .get("/api/users/login")
     .then(res => {
       const status = res.status;
       dispatch({
