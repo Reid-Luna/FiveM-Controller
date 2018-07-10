@@ -28,6 +28,7 @@ class Landing extends Component {
 
 Landing.propTypes = {
   logoutUser: PropTypes.func.isRequired,
+  statusServer: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   status: PropTypes.object.isRequired
 };
