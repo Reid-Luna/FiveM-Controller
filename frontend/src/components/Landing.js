@@ -10,9 +10,12 @@ import {
 } from "../actions/authActions";
 
 class Landing extends Component {
+  constructor() {
+    this.props.statusServer();
+  }
   render() {
     const { isAuthenticated, user } = this.props.auth;
-    const authPage = <h1>Server Status: {this.props.status}</h1>;
+    const authPage = <h1>Server Status: {this.props.status.status}</h1>;
     const guestPage = (
       <h1>Welcome, please login to use the SADPS Management System</h1>
     );
