@@ -11,6 +11,7 @@ import {
 
 class Landing extends Component {
   constructor() {
+    super();
     this.props.statusServer();
   }
   render() {
