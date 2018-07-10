@@ -12,9 +12,10 @@ import {
 class Landing extends Component {
   constructor() {
     super();
-    this.props.statusServer();
+    //this.props.statusServer();
   }
   render() {
+    console.log(this.props);
     const { isAuthenticated, user } = this.props.auth;
     const authPage = <h1>Server Status: {this.props.status.status}</h1>;
     const guestPage = (
