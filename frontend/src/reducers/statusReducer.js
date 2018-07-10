@@ -1,11 +1,12 @@
 import { SET_STATUS } from "../actions/types";
 
-const initialState = {};
-
-export default function(state = initialState, action) {
+export default function(state, action) {
   switch (action.type) {
     case SET_STATUS:
-      return action.payload;
+      return {
+        ...state,
+        status: action.payload.status
+      };
     default:
       return state;
   }
