@@ -115,7 +115,7 @@ export const statusServer = () => dispatch => {
       const status = res.status;
       dispatch({
         type: STATUS,
-        payload: status
+        payload: res
       });
     })
     .catch(err =>
