@@ -1,12 +1,18 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { logoutUser } from "../actions/authActions";
+import {
+  logoutUser,
+  statusServer,
+  startServer,
+  stopServer,
+  restartServer
+} from "../actions/authActions";
 
 class Landing extends Component {
   render() {
     const { isAuthenticated, user } = this.props.auth;
-    const authPage = <h1>Thank you for logging in, {user.name}</h1>;
+    const authPage = <h1>Server Status: {this.props.statusServer()}</h1>;
     const guestPage = (
       <h1>Welcome, please login to use the SADPS Management System</h1>
     );

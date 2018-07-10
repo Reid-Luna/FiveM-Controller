@@ -2,7 +2,14 @@ import axios from "axios";
 import setAuthToken from "../utils/setAuthToken";
 import jwt_decode from "jwt-decode";
 
-import { GET_ERRORS, SET_CURRENT_USER } from "./types";
+import {
+  GET_ERRORS,
+  SET_CURRENT_USER,
+  START_OK,
+  STOP_OK,
+  RESTART_OK,
+  STATUS
+} from "./types";
 
 export const registerUser = (userData, history) => dispatch => {
   axios
@@ -45,4 +52,76 @@ export const logoutUser = () => dispatch => {
   localStorage.removeItem("jwtToken");
   setAuthToken(false);
   dispatch(setCurrentUser({}));
+};
+
+export const startServer = () => dispatch => {
+  axios
+    .get("/api/users/login", userData)
+    .then(res => {
+      const status = res.start;
+      dispatch({
+        type: START_OK,
+        payload: "OK"
+      });
+    })
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
+export const stopServer = () => dispatch => {
+  axios
+    .get("/api/users/login", userData)
+    .then(res => {
+      const status = res.stop;
+      dispatch({
+        type: STOP_OK,
+        payload: "OK"
+      });
+    })
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
+export const restartServer = () => dispatch => {
+  axios
+    .get("/api/users/login", userData)
+    .then(res => {
+      const status = res.restart;
+      dispatch({
+        type: RESTART_OK,
+        payload: "OK"
+      });
+    })
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
+export const statusServer = () => dispatch => {
+  axios
+    .get("/api/users/login", userData)
+    .then(res => {
+      const status = res.status;
+      dispatch({
+        type: STATUS,
+        payload: status
+      });
+    })
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
 };
