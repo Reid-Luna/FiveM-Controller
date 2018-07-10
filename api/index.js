@@ -62,8 +62,8 @@ app.get(
     let status = sudo(["systemctl", "status", "fivem.service"], {});
     status.stdout.on("error", e => res.json({ error: e }));
     status.stdout.on("data", d => {
-      let data = d.toString();
-      console.log(data.split("\n"));
+      let data = d.toString().split("\n")[2];
+      res.json({ status: data });
     });
   }
 );
