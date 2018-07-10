@@ -110,7 +110,7 @@ export const restartServer = () => dispatch => {
 
 export const statusServer = () => dispatch => {
   axios
-    .get("/api/users/login")
+    .get("/status")
     .then(res => {
       const status = res.status;
       dispatch({
