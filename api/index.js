@@ -11,6 +11,7 @@ const app = express();
 
 const bp = require("body-parser");
 app.use(bp.json());
+app.use(bp.urlencoded({ extended: false }));
 
 const cors = require("cors");
 app.use(cors());
