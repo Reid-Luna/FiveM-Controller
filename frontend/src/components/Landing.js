@@ -10,8 +10,8 @@ import {
 } from "../actions/authActions";
 
 class Landing extends Component {
-  componentDidMount() {
-    this.props.statusServer();
+  async componentDidMount() {
+    await this.props.statusServer();
     console.log(this.props);
   }
   render() {
