@@ -8,7 +8,8 @@ import {
   START_OK,
   STOP_OK,
   RESTART_OK,
-  STATUS
+  STATUS,
+  SET_STATUS
 } from "./types";
 
 export const registerUser = (userData, history) => dispatch => {
@@ -44,6 +45,13 @@ export const loginUser = userData => dispatch => {
 export const setCurrentUser = decoded => {
   return {
     type: SET_CURRENT_USER,
+    payload: decoded
+  };
+};
+
+export const setStatus = decoded => {
+  return {
+    type: SET_STATUS,
     payload: decoded
   };
 };
@@ -112,11 +120,8 @@ export const statusServer = () => dispatch => {
   axios
     .get("/status")
     .then(res => {
-      const status = res.data.status;
-      dispatch({
-        type: STATUS,
-        payload: status
-      });
+      const status = res.data;
+      dispatch(setStatus(status));
     })
     .catch(err =>
       dispatch({
