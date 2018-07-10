@@ -11,8 +11,9 @@ const sudo = require("sudo");
 
 app.get("/restart", (req, res) => {
   let restart = sudo(["systemctl", "restart", "fivem.service"], {});
-  restart.on("data", () => res.json({ restarted: "OK" }));
-  restart.on("error", e => res.json({ error: e }));
+  restart.stdout.on("data", d => res.json({ data: d }));
+  restart.stdout.on("error", e => res.json({ error: e }));
+  res.json({restart: "OK"});
 });
 
 app.listen(9000, () => console.log("app running"));
