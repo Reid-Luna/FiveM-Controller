@@ -121,6 +121,7 @@ export const statusServer = () => dispatch => {
     .get("/status")
     .then(res => {
       const status = res.data;
+      console.log(res);
       dispatch(setStatus(status));
     })
     .catch(err =>
