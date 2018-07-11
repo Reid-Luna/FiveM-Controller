@@ -15,6 +15,7 @@ app.get("/start", (req, res) => {
   res.json({ start: true });
 });
 
+/*
 const getStatus = async () => {
   let status = sudo(["systemctl", "status", "fivem.service"], {});
   status.stdout.on("data", d => {
@@ -30,6 +31,7 @@ const getStatus = async () => {
 app.get("/status", async (req, res) => {
   res.json(await getStatus());
 });
+*/
 
 app.get("/clearcache", (req, res) => {
   let clearcache = sudo(["rm", "-rf", "/home/sadps/server-data/cache"], {});

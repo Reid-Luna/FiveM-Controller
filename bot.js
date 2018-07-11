@@ -42,6 +42,7 @@ const determinestatus = statusOrig => {
   }
 };
 
+/*
 const getstatus = async () => {
   const options = {
     uri: "http://localhost:3000/status",
@@ -51,6 +52,7 @@ const getstatus = async () => {
     resolve(determinestatus(r(options)));
   });
 };
+*/
 
 const clear = async () => {
   const options = {
@@ -67,10 +69,10 @@ module.exports = async () => {
 
   c.on("ready", async () => {
     console.log("hi, im ready");
-    setInterval(async () => {
-      status = await getstatus();
-      c.user.setActivity(status, { type: "WATCHING" });
-    }, 5000);
+    //setInterval(async () => {
+    //status = await getstatus();
+    //c.user.setActivity(status, { type: "WATCHING" });
+    //}, 5000);
   });
 
   c.on("message", async m => {
@@ -91,8 +93,8 @@ module.exports = async () => {
 
         case "start":
           m.channel.send("checking server status...");
-          status = await getstatus();
-          console.log(status);
+          //status = await getstatus();
+          //console.log(status);
           if (status == "you play") {
             m.channel.send("server is already running");
           } else {
