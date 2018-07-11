@@ -23,7 +23,7 @@ app.get("/status", (req, res) => {
       .split("\n")[2]
       .split(":")[1]
       .split(" ")[1];
-    res.json({ status: data });
+    return res.json({ status: data });
   });
 });
 
