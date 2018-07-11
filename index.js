@@ -15,7 +15,7 @@ app.get("/start", (req, res) => {
   res.json({ start: true });
 });
 
-const getStatus = cb => {
+const getStatus = async () => {
   let status = sudo(["systemctl", "status", "fivem.service"], {});
   status.stdout.on("data", d => {
     let data = d
@@ -23,14 +23,12 @@ const getStatus = cb => {
       .split("\n")[2]
       .split(":")[1]
       .split(" ")[1];
-    cb({ status: data });
+    return new Promise(resolve => resolve({ status: data }));
   });
 };
 
-app.get("/status", (req, res) => {
-  getStatus(object => {
-    res.json(object);
-  });
+app.get("/status", async (req, res) => {
+  res.json(await getStatus());
 });
 
 app.get("/clearcache", (req, res) => {
