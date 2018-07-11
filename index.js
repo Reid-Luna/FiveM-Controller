@@ -15,7 +15,7 @@ app.get("/start", (req, res) => {
   res.json({ start: true });
 });
 
-app.get("/status", (req, res) => {
+const getStatus = cb => {
   let status = sudo(["systemctl", "status", "fivem.service"], {});
   status.stdout.on("data", d => {
     let data = d
@@ -23,7 +23,13 @@ app.get("/status", (req, res) => {
       .split("\n")[2]
       .split(":")[1]
       .split(" ")[1];
-    return res.json({ status: data });
+    cb({ status: data });
+  });
+};
+
+app.get("/status", (req, res) => {
+  getStatus(object => {
+    res.json(object);
   });
 });
 
