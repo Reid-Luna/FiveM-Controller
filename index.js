@@ -38,6 +38,20 @@ app.get("/clearcache", (req, res) => {
   res.json({ clearcache: "OK" });
 });
 
+app.get("/kick", (req, res) => {
+  const { reason, id } = req.body;
+  let kick = sudo([
+    "./icecon",
+    "-c",
+    `"clientkick`,
+    `${id}`,
+    `${reason}"`,
+    `"localhost:30120"`,
+    "!@sadps@!"
+  ]);
+  res.json({ kick: "OK" });
+});
+
 app.listen(3000, () => console.log("api running"));
 
 require("./bot")();
