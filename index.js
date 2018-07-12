@@ -39,6 +39,7 @@ app.get("/clearcache", (req, res) => {
 });
 
 app.post("/kick", (req, res) => {
+  console.log(req);
   const { reason, id } = req.body;
   let kick = sudo([
     "./icecon",
