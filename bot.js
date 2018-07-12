@@ -15,7 +15,7 @@ const stop = async () => {
 };
 
 const kick = async (id, reason) => {
-  const reason = q.escape(reason);
+  reason = q.escape(reason);
   const options = {
     url: `http://localhost:3000/kick/${id}/${reason}`,
     json: true
