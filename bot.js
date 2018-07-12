@@ -114,7 +114,6 @@ module.exports = async () => {
           } else {
             m.channel.send("starting server...");
             let started = await start();
-            console.log(started);
             status = "you play";
           }
           break;
@@ -137,8 +136,6 @@ module.exports = async () => {
           await kick(id, reason);
           break;
       }
-    } else {
-      console.log(`m: ${m.content}`);
     }
   });
 

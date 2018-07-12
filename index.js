@@ -38,7 +38,7 @@ app.get("/clearcache", (req, res) => {
   res.json({ clearcache: "OK" });
 });
 
-app.get("/kick", (req, res) => {
+app.post("/kick", (req, res) => {
   const { reason, id } = req.body;
   let kick = sudo([
     "./icecon",
