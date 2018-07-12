@@ -13,6 +13,20 @@ const stop = async () => {
   });
 };
 
+const kick = async (id, reason) => {
+  const options = {
+    uri: "http://localhost:3000/kick",
+    body: {
+      id,
+      reason
+    },
+    json: true
+  };
+  return new Promise(resolve => {
+    resolve(r(options));
+  });
+};
+
 const start = async () => {
   const options = {
     uri: "http://localhost:3000/start",
@@ -114,6 +128,13 @@ module.exports = async () => {
             await stop();
             status = "darkness";
           }
+          break;
+
+        case "kick":
+          const id = m.content.replace(prefix, "").split(" ")[1];
+          const reason = m.content.replace(prefix, "").split(" ")[2];
+          m.channel.send(`kicking ${id} for ${reason}...`);
+          await kick(id, reason);
           break;
       }
     } else {
