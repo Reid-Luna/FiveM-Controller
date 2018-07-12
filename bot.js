@@ -2,6 +2,7 @@ const Discord = require("discord.js");
 const c = new Discord.Client();
 const { token, prefix } = require("./config.json");
 const r = require("request-promise");
+const q = require("querystring");
 
 const stop = async () => {
   const options = {
@@ -14,16 +15,9 @@ const stop = async () => {
 };
 
 const kick = async (id, reason) => {
+  const reason = q.escape(reason);
   const options = {
-    url: "http://localhost:3000/kick",
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      id: id,
-      reason: reason
-    }),
+    url: `http://localhost:3000/kick/${id}/${reason}`,
     json: true
   };
   return new Promise(resolve => {

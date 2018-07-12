@@ -1,5 +1,6 @@
 const app = require("express")();
 const sudo = require("sudo");
+const q = require("querystring");
 app.get("/restart", (req, res) => {
   let restart = sudo(["systemctl", "restart", "fivem.service"], {});
   res.json({ restart: true });
@@ -39,8 +40,8 @@ app.get("/clearcache", (req, res) => {
 });
 
 app.post("/kick", (req, res) => {
-  console.log(req.body);
-  const { reason, id } = req.body;
+  let { reason, id } = req.params;
+  reason = q.parse(reason);
   let kick = sudo([
     "./icecon",
     "-c",
