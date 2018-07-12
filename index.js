@@ -49,7 +49,7 @@ app.get("/kick/:id/:reason", (req, res) => {
     `${id}`,
     `${reason}"`,
     `"localhost:30120"`,
-    "!@sadps@!"
+    "sadps"
   ]);
   res.json({ kick: "OK" });
 });
