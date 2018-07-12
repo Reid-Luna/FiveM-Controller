@@ -42,6 +42,7 @@ app.get("/clearcache", (req, res) => {
 app.post("/kick", (req, res) => {
   let { reason, id } = req.params;
   reason = q.parse(reason);
+  console.log(`${id} ${reason}`);
   let kick = sudo([
     "./icecon",
     "-c",
