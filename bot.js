@@ -15,15 +15,15 @@ const stop = async () => {
 
 const kick = async (id, reason) => {
   const options = {
-    uri: "http://localhost:3000/kick",
+    url: "http://localhost:3000/kick",
     method: "POST",
     headers: {
       "Content-Type": "application/json"
     },
-    body: {
-      id,
-      reason
-    },
+    body: JSON.stringify({
+      id: id,
+      reason: reason
+    }),
     json: true
   };
   return new Promise(resolve => {
