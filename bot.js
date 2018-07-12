@@ -16,6 +16,10 @@ const stop = async () => {
 const kick = async (id, reason) => {
   const options = {
     uri: "http://localhost:3000/kick",
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
     body: {
       id,
       reason
